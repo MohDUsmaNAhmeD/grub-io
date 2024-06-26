@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game Start Menu</title>
+    <link rel="shortcut icon" href="logo game.jpeg" type="image/x-icon">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-image: url(https://th.bing.com/th/id/R.a540a2d86057c178b677ed3a09934de4?rik=BbsPEWsQo8iBLQ&pid=ImgRaw&r=0);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        img {
+            background-image: linear-gradient(90deg, rgb(218, 255, 117) 0%, rgb(150, 243, 0) 43%, rgb(65, 143, 2) 100%);
+            border-radius: 200px;
+        }
+        button{
+            margin-top: 20px;
+            text-align: center;
+            margin-left: -40px;
+        }
+        .button{
+        height: 50px; 
+        
+        width: 250px;
+        background: #00000000;
+        border: none;
+        border-top: 50px solid rgb(187, 241, 171);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+    position: relative;
+        }
+         button a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            height: 50px; 
+        width: 250px;
+        background: #00000000;
+        border: none;
+        position: absolute;
+        margin-left: -177px;
+        margin-top: 68px;
+        border-bottom: 50px; 
+	    border-left: 15px ;
+	    border-right: 15px ;
+        
+            
+         }
+         .trapezoid {
+            height: 50px; 
+        width: 250px;
+        background: #00000000;
+        border: none;
+        position: absolute;
+        margin-left: -177px;
+        margin-top: 68px;
+        border-bottom: 50px solid rgb(159, 224, 141);
+	    border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+        
+        
+}
+.btn {
+    height: 50px; 
+        width: 300px;
+        background: rgb(132, 226, 105);
+        border: 0.1px solid black;
+        border-radius: 20px 0px;
+        margin-top: 19px;
+        text-align: center;
+        color: white;
+        font-size: x-large;
+
+}
+.btn::placeholder {
+    color: white;
+}
+.btn:focus{
+    outline-width: 0;
+
+}
+.new {
+    margin-top: -36px;
+    display: flex;
+    margin-left: 70px;
+}
+.contact{
+margin-top: 18px;
+margin-left: -130px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="frame1">
+            <img src="logo_game-removebg-preview (1).png" alt="Game Logo">
+            <form id="startForm">
+                <input type="text" id="playerName" class="input btn" placeholder="Enter Your Name" required>
+                <div class="btn-group">
+                    <button class="button" onclick="storeName()"><a href="C:\Users\Wajahat Traders\Coding\New Folder\slither.io\index.html" class="new">NEW GAME</a></button>
+                    <button class="trapezoid" ><a href="https://www.linkedin.com/in/muhammd-usman-0a07542b8/" class="contact">Contact Us</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function storeName() {
+            var name = document.getElementById("playerName").value.trim();
+                localStorage.setItem("playerName", name);
+            
+        }
+    </script>
+</body>
+</html>

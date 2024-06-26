@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            transition: 2s ;
+        }
+
+        #gameCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #minimap {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border: 2px solid white;
+        }
+
+        #leaderboard {
+            position: fixed;
+            top: 20px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.897);
+            color: white;
+            padding: 20px;
+        }
+
+        #score {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: rgb(0, 0, 0);
+            font-size: 24px;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .button {
+            display: none;
+        }
+
+        #joystick-base {
+            display: none;
+        }
+
+        #joystick-handle {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #joystick-base {
+                width: 100px;
+                height: 100px;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 1000;
+            }
+
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            #joystick-handle {
+                width: 50px;
+                height: 50px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                z-index: 1001;
+                transition: transform 0.1s ease-out;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="gameCanvas"></canvas>
+    <canvas id="minimap" width="150" height="150"></canvas>
+    <div id="leaderboard"><h1>Leaderboard</h1></div>
+    <div id="score"></div>
+    <div id="joystick-base"></div>
+    <div id="joystick-handle"></div>
+    <div id="boost-button" class="mobile-only">BOOST</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
