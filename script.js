@@ -492,8 +492,9 @@ function respawnPlayer() {
 
 // Modify the gameOver function to allow respawning
 function gameOver() {
-  alert(`Game Over! Your score: ${playerSnake.score}`);
-  window.location.href = "index.html";
+  gamePaused = true;
+  document.getElementById('go-score').textContent = `Score: ${playerSnake.score}`;
+  document.getElementById('game-over-overlay').style.display = 'flex';
 }
 
 let gamePaused = false;
