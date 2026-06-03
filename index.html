@@ -1,116 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Snake Game Start Menu</title>
+    <link rel="shortcut icon" href="startmnu/logo game.jpeg" type="image/x-icon">
     <style>
-        body {
+        body{
             margin: 0;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            transition: 2s ;
+            padding: 0;
+            background-image: url(https://th.bing.com/th/id/R.a540a2d86057c178b677ed3a09934de4?rik=BbsPEWsQo8iBLQ&pid=ImgRaw&r=0);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-
-        #gameCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container{
+            display: flex;
+            justify-content: center;
+            text-align: center;
         }
-
-        #minimap {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            border: 2px solid white;
+        img {
+            background-image: linear-gradient(90deg, rgb(218, 255, 117) 0%, rgb(150, 243, 0) 43%, rgb(65, 143, 2) 100%);
+            border-radius: 200px;
         }
-
-        #leaderboard {
-            position: fixed;
-            top: 20px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.897);
-            color: white;
-            padding: 20px;
+        button{
+            margin-top: 20px;
+            text-align: center;
+            margin-left: -40px;
         }
-
-        #score {
-            position: fixed;
-            top: 10px;
-            left: 10px;
+        .button{
+        height: 50px; 
+        
+        width: 250px;
+        background: #00000000;
+        border: none;
+        border-top: 50px solid rgb(187, 241, 171);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+    position: relative;
+        }
+         button a {
+            text-decoration: none;
             color: rgb(0, 0, 0);
-            font-size: 24px;
-        }
+            position: absolute;
+            height: 50px; 
+        width: 250px;
+        background: #00000000;
+        border: none;
+        position: absolute;
+        margin-left: -177px;
+        margin-top: 68px;
+        border-bottom: 50px; 
+	    border-left: 15px ;
+	    border-right: 15px ;
+        
+            
+         }
+         .trapezoid {
+            height: 50px; 
+        width: 250px;
+        background: #00000000;
+        border: none;
+        position: absolute;
+        margin-left: -177px;
+        margin-top: 68px;
+        border-bottom: 50px solid rgb(159, 224, 141);
+	    border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+        
+        
+}
+.btn {
+    height: 50px; 
+        width: 300px;
+        background: rgb(132, 226, 105);
+        border: 0.1px solid black;
+        border-radius: 20px 0px;
+        margin-top: 19px;
+        text-align: center;
+        color: white;
+        font-size: x-large;
 
-        .mobile-only {
-            display: none;
-        }
+}
+.btn::placeholder {
+    color: white;
+}
+.btn:focus{
+    outline-width: 0;
 
-        .button {
-            display: none;
-        }
-
-        #joystick-base {
-            display: none;
-        }
-
-        #joystick-handle {
-            display: none;
-        }
-
-        @media only screen and (max-width: 600px) {
-            #joystick-base {
-                width: 100px;
-                height: 100px;
-                background-color: rgba(0, 0, 0, 0.5);
-                border-radius: 50%;
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                z-index: 1000;
-            }
-
-            .button {
-                background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 5px;
-            }
-
-            #joystick-handle {
-                width: 50px;
-                height: 50px;
-                background-color: rgba(255, 255, 255, 0.8);
-                border-radius: 50%;
-                position: absolute;
-                top: 25px;
-                left: 25px;
-                z-index: 1001;
-                transition: transform 0.1s ease-out;
-            }
-        }
+}
+.new {
+    margin-top: -36px;
+    display: flex;
+    margin-left: 70px;
+}
+.contact{
+margin-top: 18px;
+margin-left: -130px;
+}
     </style>
 </head>
-
 <body>
-
-    <canvas id="gameCanvas"></canvas>
-    <canvas id="minimap" width="150" height="150"></canvas>
-    <div id="leaderboard"><h1>Leaderboard</h1></div>
-    <div id="score"></div>
-    <div id="joystick-base"></div>
-    <div id="joystick-handle"></div>
-    <div id="boost-button" class="mobile-only">BOOST</div>
-
-    <script src="script.js"></script>
+    <div class="container">
+        <div class="frame1">
+            <img src="startmnu/logo_game-removebg-preview (1).png" alt="Game Logo">
+            <form id="startForm">
+                <input type="text" id="playerName" class="input btn" placeholder="Enter Your Name" required>
+                <div class="btn-group">
+                    <button class="button" onclick="return storeName()"><a href="game.html" class="new">NEW GAME</a></button>
+                    <button class="trapezoid" ><a href="https://www.linkedin.com/in/muhammd-usman-0a07542b8/" class="contact">Contact Us</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function storeName() {
+            var name = document.getElementById("playerName").value.trim();
+            if (name === "") {
+                alert("Please enter your name before starting the game!");
+                return false;
+            }
+            localStorage.setItem("playerName", name);
+            return true;
+        }
+    </script>
 </body>
-
 </html>

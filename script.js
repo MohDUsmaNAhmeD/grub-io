@@ -27,6 +27,7 @@ function startJoystick(e) {
 function moveJoystick(e) {
   if (!joystickActive) return;
   e.preventDefault();
+  if (!playerSnake) return;
 
   let touch = e.touches[0];
   let joystickRect = joystickBase.getBoundingClientRect();
@@ -433,12 +434,14 @@ foodImagesSrc.forEach((src, index) => {
     imagesLoaded++;
     if (imagesLoaded === foodImagesSrc.length) {
       initGame();
+      gameLoop();
     }
   };
   foodImages.push(img);
 });
 
 canvas.addEventListener('mousemove', (e) => {
+  if (!playerSnake) return;
   mouseX = e.clientX;
   mouseY = e.clientY;
   playerSnake.angle = Math.atan2(mouseY - viewportHeight / 2, mouseX - viewportWidth / 2);
@@ -446,6 +449,7 @@ canvas.addEventListener('mousemove', (e) => {
 
 canvas.addEventListener('touchmove', (e) => {
   e.preventDefault();
+  if (!playerSnake) return;
   const touch = e.touches[0];
   mouseX = touch.clientX;
   mouseY = touch.clientY;
@@ -453,12 +457,12 @@ canvas.addEventListener('touchmove', (e) => {
 });
 
 canvas.addEventListener('mousedown', () => {
-  if (playerSnake.score > 0) boosting = true;
+  if (playerSnake && playerSnake.score > 0) boosting = true;
 });
 
 canvas.addEventListener('touchstart', (e) => {
   e.preventDefault();
-  if (playerSnake.score > 0) boosting = true;
+  if (playerSnake && playerSnake.score > 0) boosting = true;
 });
 
 canvas.addEventListener('mouseup', () => boosting = false);
@@ -489,7 +493,7 @@ function respawnPlayer() {
 // Modify the gameOver function to allow respawning
 function gameOver() {
   alert(`Game Over! Your score: ${playerSnake.score}`);
-  window.location.href = "startmnu/index.html";
+  window.location.href = "index.html";
 }
 
 let gamePaused = false;
@@ -525,5 +529,5 @@ function gameLoop() {
 }
 
 // Start the game loop
-gameLoop();
+// (gameLoop is called from the image onload callback after initGame)
 
