@@ -273,8 +273,28 @@ function updateLeaderboard() {
   ).join('');
 }
 
+function drawGrid() {
+  ctx.fillStyle = '#f0f0f0';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#ddd';
+  ctx.lineWidth = 1;
+  const step = gridSize * 3;
+  const offX = (-camera.x * zoom) % step;
+  const offY = (-camera.y * zoom) % step;
+  ctx.beginPath();
+  for (let x = offX; x < canvas.width; x += step) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+  }
+  for (let y = offY; y < canvas.height; y += step) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+  }
+  ctx.stroke();
+}
+
 function drawGame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
   
   camera.x = playerSnake.body[0].x - viewportWidth / 2 / zoom;
   camera.y = playerSnake.body[0].y - viewportHeight / 2 / zoom;
