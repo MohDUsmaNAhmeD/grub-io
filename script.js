@@ -262,7 +262,7 @@ function killSnake(snake) {
 
 
 function updateZoom() {
-  zoom = Math.max(0.5, Math.min(1, 800 / playerSnake.body.length));
+  zoom = Math.max(0.7, Math.min(1.2, 600 / playerSnake.body.length));
   canvas.style.transform = `scale(${zoom})`;
 }
 
@@ -490,34 +490,28 @@ function respawnPlayer() {
   boosting = false;
 }
 
-// Modify the gameOver function to allow respawning
-function gameOver() {
-  gamePaused = true;
-  document.getElementById('go-score').textContent = `Score: ${playerSnake.score}`;
-  document.getElementById('game-over-overlay').style.display = 'flex';
-}
-
 let gamePaused = false;
 
-function togglePause() {
-  gamePaused = !gamePaused;
-  if (gamePaused) {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'black';
-    ctx.font = '48px Arial';
-    ctx.fillText('PAUSED', canvas.width / 2 - 80, canvas.height / 2);
-  }
+function gameOver() {
+  gamePaused = true;
+  document.getElementById('go-score').textContent = playerSnake.score;
+  document.getElementById('game-over-overlay').classList.add('active');
 }
 
-// Add pause button
-const pauseButton = document.createElement('button');
-pauseButton.textContent = 'Pause';
-pauseButton.style.position = 'absolute';
-pauseButton.style.top = '10px';
-pauseButton.style.left = '10px';
-pauseButton.addEventListener('click', togglePause);
-document.body.appendChild(pauseButton);
+function togglePause() {
+  if (document.getElementById('game-over-overlay').classList.contains('active')) return;
+  gamePaused = !gamePaused;
+  document.getElementById('pause-overlay').classList.toggle('active', gamePaused);
+}
+
+document.getElementById('resume-btn').addEventListener('click', () => {
+  gamePaused = false;
+  document.getElementById('pause-overlay').classList.remove('active');
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') togglePause();
+});
 
 // Game loop
 function gameLoop() {
